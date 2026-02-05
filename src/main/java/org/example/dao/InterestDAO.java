@@ -21,11 +21,12 @@ public class InterestDAO {
 
     static final int INSERT_ACCOUNT_ID=1;
     static final int INSERT_INTEREST_AMOUNT=2;
+    static final int INSERT_INTEREST_APPLIED_DATE=3;
 
     static  final int GET_INTEREST_BY_ACCOUNTID=1;
 
-    String InsertSQL="Insert into account(account_id,interest_amount)" +
-            "VALUES(?,?)";
+    String InsertSQL="Insert into interest(account_id,interest_amount,interest_applied_date)" +
+            "VALUES(?,?,?)";
 
     String GetByAccountIdSQL = "SELECT * FROM interest WHERE account_id = ?";
 
@@ -35,7 +36,9 @@ public class InterestDAO {
             PreparedStatement ps=con.prepareStatement(InsertSQL)){
 
             ps.setLong(INSERT_ACCOUNT_ID,interest.getAccountId());
-            ps.setLong(INSERT_INTEREST_AMOUNT,interest.getInterestamount());
+            ps.setDouble(INSERT_INTEREST_AMOUNT,interest.getInterestamount());
+            ps.setDate(INSERT_INTEREST_APPLIED_DATE,java.sql.Date.valueOf(interest.getInterestapplieddate()));
+
 
             int changedRows=ps.executeUpdate();
             if(changedRows==0){
@@ -71,7 +74,8 @@ public class InterestDAO {
 
         interest.setInterestId(rs.getLong("interest_id"));
         interest.setAccountId(rs.getLong("account_id"));
-        interest.setInterestamount(rs.getLong("interest_amount"));
+        interest.setInterestamount(rs.getDouble("interest_amount"));
+        interest.setInterestapplieddate(rs.getDate("interest_applied_date").toLocalDate());
         return interest;
     }
 }

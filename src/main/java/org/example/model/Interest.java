@@ -1,19 +1,31 @@
 package org.example.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Interest {
 
     private long interestId;
     private long accountId;
-    private long Interestamount;
+    private double Interestamount;
 
-    public long getInterestamount() {
-        return Interestamount;
+    public LocalDate getInterestapplieddate() {
+        return interestapplieddate;
     }
 
-    public void setInterestamount(long interestamount) {
+    public void setInterestapplieddate(LocalDate interestapplieddate) {
+        this.interestapplieddate = interestapplieddate;
+    }
+
+    private LocalDate interestapplieddate;
+
+    public void setInterestamount(double interestamount) {
         Interestamount = interestamount;
+    }
+
+
+    public double getInterestamount() {
+        return Interestamount;
     }
 
     public long getInterestId() {
