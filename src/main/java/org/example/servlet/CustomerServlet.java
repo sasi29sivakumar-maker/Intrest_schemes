@@ -58,6 +58,7 @@ public class CustomerServlet extends HttpServlet {
 
     }
 
+
     private void mapCustomer(HttpServletResponse response){
         try {
             objectMapper.writeValue(response.getWriter(), customerService.findAll());
