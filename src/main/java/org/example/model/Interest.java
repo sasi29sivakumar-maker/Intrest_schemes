@@ -1,6 +1,5 @@
 package org.example.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Interest {
@@ -8,26 +7,23 @@ public class Interest {
     private long interestId;
     private long accountId;
     private double Interestamount;
-
-    public LocalDate getInterestapplieddate() {
-        return interestapplieddate;
-    }
-
-    public void setInterestapplieddate(LocalDate interestapplieddate) {
-        this.interestapplieddate = interestapplieddate;
-    }
-
-    private LocalDate interestapplieddate;
+    private LocalDate interesrapplieddate;
 
     public void setInterestamount(double interestamount) {
         Interestamount = interestamount;
     }
 
-
     public double getInterestamount() {
         return Interestamount;
+    };
+
+    public LocalDate getInteresrapplieddate() {
+        return interesrapplieddate;
     }
 
+    public void setInteresrapplieddate(LocalDate interesrapplieddate) {
+        this.interesrapplieddate = interesrapplieddate;
+    }
     public long getInterestId() {
         return interestId;
     }
@@ -43,4 +39,5 @@ public class Interest {
     public void setAccountId(long accountId) {
         this.accountId = accountId;
     }
+
 }

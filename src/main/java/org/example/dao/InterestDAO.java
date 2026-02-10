@@ -2,7 +2,6 @@ package org.example.dao;
 
 import org.example.Exception.DataException;
 import org.example.dbconfiguration.DbConfig;
-import org.example.model.Account;
 import org.example.model.Interest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,15 +36,15 @@ public class InterestDAO {
 
             ps.setLong(INSERT_ACCOUNT_ID,interest.getAccountId());
             ps.setDouble(INSERT_INTEREST_AMOUNT,interest.getInterestamount());
-            ps.setDate(INSERT_INTEREST_APPLIED_DATE,java.sql.Date.valueOf(interest.getInterestapplieddate()));
+            ps.setDate(INSERT_INTEREST_APPLIED_DATE,java.sql.Date.valueOf(interest.getInteresrapplieddate()));
 
 
             int changedRows=ps.executeUpdate();
             if(changedRows==0){
-                log.error("Insert failed,fields are not inserted in account:{}",interest.getInterestId());
+                log.error("Insert failed,fields are not inserted in interest:{}",interest.getInterestId());
             }
             else{
-                log.info("sucessfully values are inserted in account:{}",interest.getInterestId());
+                log.info("sucessfully values are inserted in interest:{}",interest.getInterestId());
             }
         } catch (SQLException e) {
             throw new DataException("Failed to insert",e);
@@ -62,10 +61,10 @@ public class InterestDAO {
             while(rs.next()){
                 InterestList.add(mapping(rs));
             }
-            log.info("successfully fetched customer details,count={}", InterestList.size());
+            log.info("successfully fetched interest details,count={}", InterestList.size());
             return InterestList;
         } catch (SQLException e) {
-            throw new DataException("Failed to fetch customer details",e);
+            throw new DataException("Failed to fetch interest details",e);
         }
     }
 
@@ -75,7 +74,7 @@ public class InterestDAO {
         interest.setInterestId(rs.getLong("interest_id"));
         interest.setAccountId(rs.getLong("account_id"));
         interest.setInterestamount(rs.getDouble("interest_amount"));
-        interest.setInterestapplieddate(rs.getDate("interest_applied_date").toLocalDate());
+        interest.setInteresrapplieddate(rs.getDate("interest_applied_date").toLocalDate());
         return interest;
     }
 }

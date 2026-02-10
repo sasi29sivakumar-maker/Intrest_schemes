@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.Exception.DataException;
 import org.example.dbconfiguration.DbConfig;
 import org.example.model.Account;
+import org.example.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-   i
+
 public class AccountDAO {
     private static final Logger log= LoggerFactory.getLogger(AccountDAO.class);
 
@@ -29,7 +30,7 @@ public class AccountDAO {
     String InsertSQL="Insert into account(customer_id,account_number,account_status,createdat,amount,tenure)" +
             "VALUES(?,?,?,?,?,?)";
 
-    String GetByCustomerIdSQL = "SELECT * FROM account WHERE customer_id = ?";
+    String SelectAllSQL="Select * from account";
 
     public void insert(Account account){
 
@@ -40,7 +41,7 @@ public class AccountDAO {
             ps.setString(INSERT_ACCOUNT_NUMBER,account.getAccountNumber());
             ps.setString(INSERT_ACCOUNT_STATUS, account.getAccountStatus());
             ps.setDate(INSERT_ACCOUNT_CREATEDAT,java.sql.Date.valueOf(account.getCreatedat()));
-            ps.setLong(INSERT_ACCOUNT_AMOUNT,account.getAmount());
+            ps.setDouble(INSERT_ACCOUNT_AMOUNT,account.getAmount());
             ps.setInt(INSERT_ACCOUNT_TENURE,account.getTenure());
 
             int changedRows=ps.executeUpdate();
@@ -58,20 +59,21 @@ public class AccountDAO {
         }
     }
 
-    public List<Account> getAccountsByCustomerId(long customerID) throws SQLException {
+
+
+    public List<Account> findAll() throws SQLException {
         List<Account> AccountList=new ArrayList<>();
         try(Connection con= DbConfig.getConnect().getConnection();
-            PreparedStatement ps=con.prepareStatement(GetByCustomerIdSQL)){
+            PreparedStatement ps=con.prepareStatement(SelectAllSQL)){
 
-            ps.setLong(GET_ACCOUNT_BY_CUSTOMERID,customerID);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 AccountList.add(mapping(rs));
             }
-            log.info("successfully fetched customer details,count={}", AccountList.size());
+            log.info("successfully fetched account details,count={}", AccountList.size());
             return  AccountList;
         } catch (SQLException e) {
-            throw new DataException("Failed to fetch customer details",e);
+            throw new DataException("Failed to fetch account details",e);
         }
     }
 
@@ -83,7 +85,7 @@ public class AccountDAO {
         account.setAccountNumber(rs.getString("account_number"));
         account.setAccountStatus(rs.getString("account_status"));
         account.setCreatedat(rs.getDate("createdat").toLocalDate());
-        account.setAmount(rs.getLong("amount"));
+        account.setAmount(rs.getDouble("amount"));
         account.setTenure(rs.getInt("tenure"));
         return account;
     }

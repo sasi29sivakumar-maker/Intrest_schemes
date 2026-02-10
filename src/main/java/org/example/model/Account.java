@@ -9,13 +9,38 @@ public class Account {
     private String accountNumber;
     private String accountStatus;
     private LocalDate createdat;
-    private long amount;
-    private int tenure;
 
+    public LocalDate getCreatedat() {
+        return createdat;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public int getTenure() {
+        return tenure;
+    }
+
+    public void setTenure(int tenure) {
+        this.tenure = tenure;
+    }
+
+    public void setCreatedat(LocalDate createdat) {
+        this.createdat = createdat;
+    }
+
+    private double amount;
+    private int tenure;
     public Account() {
         this.accountStatus = "FIXED";
         this.createdat=LocalDate.now();
     }
+
     public long getAccountId() {
         return accountId;
     }
@@ -46,27 +71,5 @@ public class Account {
 
     public void setAccountStatus(String accountStatus) {
         this.accountStatus = accountStatus;
-    }
-
-    public LocalDate getCreatedat() {
-        return createdat;
-    }
-
-    public void setCreatedat(LocalDate createdat) {
-        this.createdat = createdat;
-    }
-    public long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(long amount) {
-        this.amount = amount;
-    }
-
-    public int getTenure() {
-        return tenure;
-    }
-    public void setTenure(int tenure) {
-        this.tenure = tenure;
     }
 }
