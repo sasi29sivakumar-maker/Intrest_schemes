@@ -3,6 +3,7 @@ package org.example.model;
 public class Customer {
 
     private long customerId;
+    private long userId;
     private String customerName;
     private String gender;
     private String phoneNo;
@@ -77,5 +78,13 @@ public class Customer {
 
     public void setCustomerStatus(String customerStatus) {
         this.customerStatus = customerStatus;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

@@ -6,9 +6,6 @@ import org.example.model.Customer;
 import org.example.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

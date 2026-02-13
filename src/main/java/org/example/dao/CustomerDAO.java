@@ -17,16 +17,17 @@ public class CustomerDAO {
 
     private static final Logger log= LoggerFactory.getLogger(CustomerDAO.class);
 
-    static final int INSERT_CUSTOMER_NAME=1;
-    static final int INSERT_GENDER=2;
-    static final int INSERT_PHONE_NO=3;
-    static final int INSERT_EMAIL=4;
-    static final int INSERT_ADDRESS=5;
-    static final int INSERT_AADHAR_NO=6;
-    static final int INSERT_CUSTOMER_STATUS=7;
+    static final int INSERT_USER_ID=1;
+    static final int INSERT_CUSTOMER_NAME=2;
+    static final int INSERT_GENDER=3;
+    static final int INSERT_PHONE_NO=4;
+    static final int INSERT_EMAIL=5;
+    static final int INSERT_ADDRESS=6;
+    static final int INSERT_AADHAR_NO=7;
+    static final int INSERT_CUSTOMER_STATUS=8;
 
-    String InsertSQL="Insert into customer(user_id,customer_name,date_of_birth,gender,phone_no,email,address,aadhar_no,customer_status)" +
-            "VALUES(?,?,?,?,?,?,?,?,?)";
+    String InsertSQL="Insert into customer(user_id,customer_name,gender,phone_no,email,address,aadhar_no,customer_status)" +
+            "VALUES(?,?,?,?,?,?,?)";
 
     String SelectAllSQL="Select * from customer";
 
@@ -35,6 +36,7 @@ public class CustomerDAO {
 
         try(Connection con= DbConfig.getConnect().getConnection();
             PreparedStatement ps=con.prepareStatement(InsertSQL)){
+            ps.setLong(INSERT_USER_ID,customer.getUserId());
             ps.setString(INSERT_CUSTOMER_NAME,customer.getCustomerName());
             ps.setString(INSERT_GENDER,customer.getGender());
             ps.setString(INSERT_PHONE_NO,customer.getPhoneNo());
@@ -78,6 +80,7 @@ public class CustomerDAO {
     public Customer mapping(ResultSet rs) throws SQLException {
         Customer customer=new Customer();
 
+        customer.setUserId(rs.getLong("user_id"));
         customer.setCustomerId(rs.getLong("customer_id"));
         customer.setCustomerName(rs.getString("customer_name"));
         customer.setGender(rs.getString("gender"));
