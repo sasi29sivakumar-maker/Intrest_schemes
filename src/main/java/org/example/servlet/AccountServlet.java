@@ -9,7 +9,6 @@ import org.example.model.Account;
 import org.example.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ import java.util.List;
 
 public class AccountServlet extends HttpServlet {
     private static final long serialVersionUID=1L;
-
     private static final Logger log= LoggerFactory.getLogger(AccountServlet.class);
 
     private final ObjectMapper objectMapper ;
@@ -44,10 +42,7 @@ public class AccountServlet extends HttpServlet {
 
             log.error("Failed to insert value in Account, Exceptiom : ",e);
         }
-
-
     }
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response){
         try {
@@ -59,7 +54,6 @@ public class AccountServlet extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             log.error("failed to get account,Expection: ",e);
         }
-
     }
     private void mapAccount(HttpServletResponse response){
         try {
