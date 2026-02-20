@@ -24,9 +24,8 @@ public class CustomerDAO {
     static final int INSERT_EMAIL=5;
     static final int INSERT_ADDRESS=6;
     static final int INSERT_AADHAR_NO=7;
-    static final int INSERT_CUSTOMER_STATUS=8;
 
-    String InsertSQL="Insert into customer(user_id,customer_name,gender,phone_no,email,address,aadhar_no,customer_status)" +
+    String InsertSQL="Insert into customer(user_id,customer_name,gender,phone_no,email,address,aadhar_no)" +
             "VALUES(?,?,?,?,?,?,?)";
 
     String SelectAllSQL="Select * from customer";
@@ -43,7 +42,6 @@ public class CustomerDAO {
             ps.setString(INSERT_EMAIL,customer.getEmail());
             ps.setString(INSERT_ADDRESS,customer.getAddress());
             ps.setString(INSERT_AADHAR_NO,customer.getAadharNo());
-            ps.setString(INSERT_CUSTOMER_STATUS, customer.getCustomerStatus());
 
             int changedRows=ps.executeUpdate();
 

@@ -46,11 +46,7 @@ public final class DbConfig {
         } catch (Exception e) {
             throw new DataException("Failed to Initialize Database connection ",e);
         }
-
-
-
     }
-
     public static DataSource getConnect(){
         return datasource;
     }
