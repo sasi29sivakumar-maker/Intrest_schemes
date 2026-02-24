@@ -22,7 +22,7 @@ public final class DbConfig {
 
 
             InputStream input=Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream("db.properties");
+                    .getResourceAsStream("liquibase.properties");
 
 
             if(input==null){

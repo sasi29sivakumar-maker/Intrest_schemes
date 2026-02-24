@@ -39,20 +39,19 @@ public class UserDAO {
             if(changedRows==0){
                 log.error("Insert failed,fields are not inserted in user:{}",user.getUserId());
             }
-
             else{
                 log.info("sucessfully values are inserted in account:{}",user.getUserId());
             }
-
         } catch (SQLException e) {
             throw new DataException("failed to add",e);
         }
     }
 
     public String getPass(String username) {
+
         try(Connection con= DbConfig.getConnect().getConnection();
-            PreparedStatement ps=con.prepareStatement(GET_PASS))
-        {
+            PreparedStatement ps=con.prepareStatement(GET_PASS)) {
+
             ps.setString(GET_PASSWORD,username);
             ResultSet rs = ps.executeQuery();
             log.info("Query Executed");
@@ -64,8 +63,5 @@ public class UserDAO {
         }catch (SQLException e) {
             throw new DataException("Failed to get Password from db",e);
         }
-
     }
-
-
 }
