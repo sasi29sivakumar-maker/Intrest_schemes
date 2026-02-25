@@ -140,7 +140,7 @@ GET /interest?accountId=1
 
 ```json
 {
-  "username": "arun",
+  "username": "sasi",
   "password": "1234"
 }
 ```
@@ -150,10 +150,10 @@ GET /interest?accountId=1
 ```json
 {
   "userId": 1,
-  "customerName": "Arun Kumar",
+  "customerName": "sasi kumar",
   "gender": "Male",
   "phoneNo": "9876543210",
-  "email": "arun@gmail.com",
+  "email": "sasikumar@gmail.com",
   "address": "Chennai",
   "aadharNo": "123456789012"
 }
