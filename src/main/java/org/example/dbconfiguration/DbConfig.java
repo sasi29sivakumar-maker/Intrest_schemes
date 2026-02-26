@@ -50,5 +50,4 @@ public final class DbConfig {
     public static DataSource getConnect(){
         return datasource;
     }
-
 }

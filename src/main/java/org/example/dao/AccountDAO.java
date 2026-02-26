@@ -60,6 +60,7 @@ public class AccountDAO {
 
     public List<Account> findAll() throws SQLException {
         List<Account> AccountList = new ArrayList<>();
+
         try (Connection con = DbConfig.getConnect().getConnection();
              PreparedStatement ps = con.prepareStatement(SelectAllSQL)) {
 

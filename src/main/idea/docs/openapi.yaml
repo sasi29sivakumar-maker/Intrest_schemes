@@ -1,0 +1,252 @@
+openapi: 3.0.0
+
+info:
+  title: Account Conversion System API
+  description: |
+    REST APIs for account management system.
+    Built using Java Servlets with JWT-based authentication.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/AccountConversion
+
+tags:
+  - name: Auth
+  - name: Customer
+  - name: Account
+  - name: Interest
+
+paths:
+
+  /register:
+    post:
+      tags: [Auth]
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User registered successfully
+        '400':
+          description: Invalid input
+
+  /login:
+    post:
+      tags: [Auth]
+      summary: Login and generate JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: JWT token generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Invalid credentials
+
+  /customers:
+    post:
+      tags: [Customer]
+      summary: Create customer
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer created
+
+    get:
+      tags: [Customer]
+      summary: Get all customers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+
+  /accounts:
+    post:
+      tags: [Account]
+      summary: Create account
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: Account created
+
+    get:
+      tags: [Account]
+      summary: Get accounts by customer ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+
+  /interest:
+    post:
+      tags: [Interest]
+      summary: Add interest record
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Interest'
+      responses:
+        '201':
+          description: Interest added
+
+    get:
+      tags: [Interest]
+      summary: Get interest by account ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: accountId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Interest details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Interest'
+
+components:
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          example: bharani
+        password:
+          type: string
+          example: password123
+
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiJ9...
+
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        userId:
+          type: integer
+        customerName:
+          type: string
+        gender:
+          type: string
+        phoneNo:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        aadharNo:
+          type: string
+        customerStatus:
+          type: string
+          example: ACTIVE
+
+    Account:
+      type: object
+      properties:
+        accountId:
+          type: integer
+        customerId:
+          type: integer
+        accountNumber:
+          type: string
+        accountStatus:
+          type: string
+          example: FIXED
+        createdAt:
+          type: string
+          format: date
+        amount:
+          type: integer
+        tenure:
+          type: integer
+
+    Interest:
+      type: object
+      properties:
+        interestId:
+          type: integer
+        accountId:
+          type: integer
+        interestAmount:
+          type: number
+          format: double
+        interestAppliedDate:
+          type: string
+          format: date
