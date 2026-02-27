@@ -57,7 +57,6 @@ public class AccountDAO {
         }
     }
 
-
     public List<Account> findAll() throws SQLException {
         List<Account> AccountList = new ArrayList<>();
 
