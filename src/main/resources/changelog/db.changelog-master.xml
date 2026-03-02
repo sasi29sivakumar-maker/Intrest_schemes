@@ -6,8 +6,8 @@
         xsi:schemaLocation="
             http://www.liquibase.org/xml/ns/dbchangelog
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
-    <include file="src/main/resources/changelog/changes/001-create-user-table.xml"/>
-    <include file="src/main/resources/changelog/changes/002-create-customer-table.xml"/>
-    <include file="src/main/resources/changelog/changes/003-create-account-table.xml"/>
+    <include file="src/main/resources/changelog/changes/001-create-customer-table.xml"/>
+    <include file="src/main/resources/changelog/changes/002-create-account-table.xml"/>
+    <include file="src/main/resources/changelog/changes/003-create-interest-table.xml"/>
 
 </databaseChangeLog>
