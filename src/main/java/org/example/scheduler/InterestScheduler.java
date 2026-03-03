@@ -15,8 +15,7 @@ import java.time.LocalDateTime;
 @WebListener
 public class InterestScheduler implements ServletContextListener {
 
-    private static final Logger log =
-            LoggerFactory.getLogger(InterestScheduler.class);
+    private static final Logger log = LoggerFactory.getLogger(InterestScheduler.class);
 
     private Scheduler scheduler;
 
@@ -45,18 +44,6 @@ public class InterestScheduler implements ServletContextListener {
 
         } catch (SchedulerException e) {
             log.error("Scheduler failed to start", e);
-        }
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        try {
-            if (scheduler != null) {
-                scheduler.shutdown(true);
-                log.info("Scheduler stopped");
-            }
-        } catch (SchedulerException e) {
-            log.error("Scheduler shutdown failed", e);
         }
     }
 }

@@ -25,7 +25,6 @@ public class AccountDAO {
     static final int INSERT_ACCOUNT_AMOUNT = 5;
     static final int INSERT_ACCOUNT_TENURE = 6;
 
-    static final int GET_ACCOUNT_BY_CUSTOMERID = 1;
 
     String InsertSQL = "Insert into account(customer_id,account_number,account_status,createdat,amount,tenure)" +
             "VALUES(?,?,?,?,?,?)";
