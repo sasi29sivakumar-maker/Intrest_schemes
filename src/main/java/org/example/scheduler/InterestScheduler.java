@@ -33,7 +33,7 @@ public class InterestScheduler implements ServletContextListener {
             Trigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("InterestTrigger", "interest-group")
                     .withSchedule(
-                            CronScheduleBuilder.cronSchedule("0 10 * * * ?")
+                            CronScheduleBuilder.cronSchedule("0 0 10 * * ?")
                     )
                     .build();
 
