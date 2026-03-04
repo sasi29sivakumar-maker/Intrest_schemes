@@ -22,11 +22,11 @@ public final class DbConfig {
 
 
             InputStream input=Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream("liquibase.properties");
+                    .getResourceAsStream("properties");
 
 
             if(input==null){
-                throw new DataException("liquibase properties files are not found ");
+                throw new DataException(" properties files are not found ");
             }
 
             props.load(input);
